@@ -1,8 +1,7 @@
 import os
 import sqlite3
-import pymysql
 from functools import wraps
-from flask import Flask, render_template, request, current_app
+from flask import Flask, render_template, request, current_app, redirect
 
 app = Flask(
     __name__, static_url_path="", static_folder="static", template_folder="templates"
@@ -36,29 +35,73 @@ def connect_db(func):
 @connect_db
 def index(cursor, connection):
     args = dict()
-    args["title"] = "Проект такой-то"
+    args["title"] = "Главная страница"
     args["приветствие"] = "Привет!"
     if request.method == "GET":
-        cursor.execute("SELECT * FROM user")
-        users = cursor.fetchall()
-        result=[]
-        for user in users:
-            result.append(user["name"])
-        args["users"] = result
         return render_template("index.html", args=args)
     elif request.method == "POST":
         return render_template("index.html")
 
 
-@app.route("/bla", endpoint="bla", methods=["GET", "POST"])
+@app.route("/addatm", endpoint="addatm", methods=["GET", "POST"])
 @connect_db
-def bla(cursor, connection):
+def addatm(cursor, connection):
     args = dict()
-    args["title"] = "Проект такой-то"
+    args["title"] = "Добавить банкомат"
     if request.method == "GET":
-        return render_template("hello.html", args=args)
+        return render_template("addatm.html", args=args)
     elif request.method == "POST":
-        return render_template("hello.html", args=args)
+        deviceid=request.form.get("deviceid", "")
+        ll=request.form.get("ll", "")
+        if not deviceid:
+            args["error"] = "Не ввели Device ID"
+            return render_template("error.html", args=args)
+        query = (
+            f"INSERT INTO atm (device_id, ll, status) VALUES ('{deviceid}', '{ll}', 1);"
+        )
+        cursor.execute(query)
+        connection.commit()
+
+        return redirect(f"/listatm", 301)
+
+
+@app.route("/listatm", endpoint="listatm", methods=["GET", "POST"])
+@connect_db
+def listatm(cursor, connection):
+    args = dict()
+    args["title"] = "Список банкоматов"
+
+    query = (
+        f"SELECT * FROM atm;"
+    )
+    cursor.execute(query)
+    atms = cursor.fetchall()
+    args["atms"] = atms
+
+    if request.method == "GET":
+        return render_template("listatm.html", args=args)
+    elif request.method == "POST":
+        return render_template("listatm.html", args=args)
+
+
+@app.route("/deleteatm", endpoint="deleteatm", methods=["GET", "POST"])
+@connect_db
+def deleteatm(cursor, connection):
+    args = dict()
+    args["title"] = "Удалить банкомат"
+    id = request.args.get("id")
+    if not id:
+        args["error"] = "Номер банкомата пустой"
+        return render_template("error.html", args=args)
+
+    query = (
+        f"DELETE FROM atm WHERE id={id};"
+    )
+    cursor.execute(query)
+    connection.commit()
+
+    return redirect(f"/listatm", 301)
+
 
 
 if __name__ == '__main__':
