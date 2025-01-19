@@ -103,6 +103,34 @@ def deleteatm(cursor, connection):
     return redirect(f"/listatm", 301)
 
 
+@app.route("/editatm", endpoint="editatm", methods=["GET", "POST"])
+@connect_db
+def editatm(cursor, connection):
+    args = dict()
+    args["title"] = "Редактировать карту"
+    if request.method == "GET":
+        id = request.args.get("id")
+        if not id:
+            args["error"] = "Номер банкомата пустой"
+            return render_template("error.html", args=args)
+
+        args["id"] = id
+        return render_template("editatm.html", args=args)
+    elif request.method == "POST":
+        ll=request.form.get("ll", "")
+        id=request.form.get("id", "")
+        if not ll:
+            args["error"] = "Не ввели Device ID"
+            return render_template("error.html", args=args)
+        query = (
+            f"UPDATE atm SET ll = '{ll}' WHERE id={id};"
+        )
+        cursor.execute(query)
+        connection.commit()
+
+        return redirect(f"/listatm", 301)
+
+
 
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')
