@@ -3,6 +3,11 @@ import sqlite3
 from functools import wraps
 from flask import Flask, render_template, request, current_app, redirect
 
+from view_index import *
+from view_addatm import *
+from view_listatm import *
+from view_command import *
+
 app = Flask(
     __name__, static_url_path="", static_folder="static", template_folder="templates"
 )
@@ -33,55 +38,26 @@ def connect_db(func):
 
 @app.route("/", endpoint="index", methods=["GET", "POST"])
 @connect_db
-def index(cursor, connection):
-    args = dict()
-    args["title"] = "Главная страница"
-    args["приветствие"] = "Привет!"
-    if request.method == "GET":
-        return render_template("index.html", args=args)
-    elif request.method == "POST":
-        return render_template("index.html")
+def index_route(cursor, connection):
+    return index(cursor, connection)
 
 
 @app.route("/addatm", endpoint="addatm", methods=["GET", "POST"])
 @connect_db
-def addatm(cursor, connection):
-    args = dict()
-    args["title"] = "Добавить банкомат"
-    if request.method == "GET":
-        return render_template("addatm.html", args=args)
-    elif request.method == "POST":
-        deviceid=request.form.get("deviceid", "")
-        ll=request.form.get("ll", "")
-        if not deviceid:
-            args["error"] = "Не ввели Device ID"
-            return render_template("error.html", args=args)
-        query = (
-            f"INSERT INTO atm (device_id, ll, status) VALUES ('{deviceid}', '{ll}', 1);"
-        )
-        cursor.execute(query)
-        connection.commit()
-
-        return redirect(f"/listatm", 301)
+def addatm_route(cursor, connection):
+    return addatm(cursor, connection)
 
 
 @app.route("/listatm", endpoint="listatm", methods=["GET", "POST"])
 @connect_db
-def listatm(cursor, connection):
-    args = dict()
-    args["title"] = "Список банкоматов"
+def listatm_route(cursor, connection):
+    return listatm(cursor, connection)
 
-    query = (
-        f"SELECT * FROM atm;"
-    )
-    cursor.execute(query)
-    atms = cursor.fetchall()
-    args["atms"] = atms
 
-    if request.method == "GET":
-        return render_template("listatm.html", args=args)
-    elif request.method == "POST":
-        return render_template("listatm.html", args=args)
+@app.route("/command", endpoint="command", methods=["GET", "POST"])
+@connect_db
+def command_route(cursor, connection):
+    return command(cursor, connection)
 
 
 @app.route("/deleteatm", endpoint="deleteatm", methods=["GET", "POST"])
