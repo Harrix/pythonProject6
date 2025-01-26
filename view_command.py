@@ -3,8 +3,8 @@ import sqlite3
 from functools import wraps
 from flask import Flask, render_template, request, current_app, redirect
 
-def command(cursor, connection):
-    args = dict()
+def command(cursor, connection, args):
+    # args = dict()
     args["title"] = "Комманда"
 
     cursor.execute(f"SELECT * FROM atm;")

@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="906e7e67-296a-4aed-ad9d-e59a20265514" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/command.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view_addatm.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view_command.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view_index.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view_listatm.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/main.db" beforeDir="false" afterPath="$PROJECT_DIR$/db/main.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_addatm.py" beforeDir="false" afterPath="$PROJECT_DIR$/view_addatm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_command.py" beforeDir="false" afterPath="$PROJECT_DIR$/view_command.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_index.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/view_listatm.py" beforeDir="false" afterPath="$PROJECT_DIR$/view_listatm.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,19 +54,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.main.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/sergi/OneDrive/Projects/Python/pythonProject6/templates"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.view_index.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/sergi/OneDrive/Projects/Python/pythonProject6&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\sergi\OneDrive\Projects\Python\pythonProject6\templates" />
       <recent name="C:\Users\sergi\OneDrive\Projects\Python\pythonProject6" />
+      <recent name="C:\Users\sergi\OneDrive\Projects\Python\pythonProject6\templates" />
       <recent name="C:\Users\sergi\OneDrive\Projects\Python\pythonProject6\db" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -73,7 +76,7 @@
       <recent name="C:\Users\sergi\OneDrive\Projects\Python\pythonProject6\static" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.main">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="pythonProject6" />
       <option name="ENV_FILES" value="" />
@@ -96,6 +99,33 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="view_index" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="pythonProject6" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/view_index.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.view_index" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
