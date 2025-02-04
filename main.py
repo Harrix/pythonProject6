@@ -243,6 +243,29 @@ def loadcsv(cursor, connection, args):
 
 
 
+@app.route("/map", endpoint="map", methods=["GET", "POST"])
+@connect_db
+@authorization
+def listmessages(cursor, connection, args):
+    args["title"] = "Карта"
+
+    query = (
+        f"SELECT * FROM atm ;"
+    )
+    cursor.execute(query)
+    atms = cursor.fetchall()
+    lines=[]
+    for atm in atms:
+        lines.append(atm["ll"].replace("%2C", ","))
+
+
+    url = f"https://static-maps.yandex.ru/v1?ll=37.620070,55.753630&lang=ru_RU&size=450,450&z=10&pt={"~".join(lines)}&apikey=f3a0fe3a-b07e-4840-a1da-06f18b2ddf13"
+    print(url)
+    # url = f"https://static-maps.yandex.ru/v1?ll=37.620070,55.753630&lang=ru_RU&size=450,450&z=13&pt=37.620070,55.753630~37.623664,55.76094&apikey=f3a0fe3a-b07e-4840-a1da-06f18b2ddf13"
+    args['image_url'] = url
+
+    return render_template("map.html", args=args)
+
 @app.route("/exit")
 def exit_from_profile():
     session.pop("email", None)
