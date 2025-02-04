@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="906e7e67-296a-4aed-ad9d-e59a20265514" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/listmessages.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/loadcsv.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/main.db" beforeDir="false" afterPath="$PROJECT_DIR$/db/main.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view_addatm.py" beforeDir="false" afterPath="$PROJECT_DIR$/view_addatm.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view_command.py" beforeDir="false" afterPath="$PROJECT_DIR$/view_command.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view_index.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/view_listatm.py" beforeDir="false" afterPath="$PROJECT_DIR$/view_listatm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,21 +51,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.view_index.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/sergi/OneDrive/Projects/Python/pythonProject6&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.main.executor": "Run",
+    "Python.view_index.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/sergi/OneDrive/Projects/Python/pythonProject6/templates"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\sergi\OneDrive\Projects\Python\pythonProject6" />
       <recent name="C:\Users\sergi\OneDrive\Projects\Python\pythonProject6\templates" />
+      <recent name="C:\Users\sergi\OneDrive\Projects\Python\pythonProject6" />
       <recent name="C:\Users\sergi\OneDrive\Projects\Python\pythonProject6\db" />
     </key>
     <key name="MoveFile.RECENT_KEYS">

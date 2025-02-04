@@ -3,6 +3,7 @@ import sqlite3
 from functools import wraps
 import datetime
 from flask import Flask, render_template, request, current_app, redirect, session
+import csv
 
 from view_addatm import *
 from view_listatm import *
@@ -163,6 +164,83 @@ def editatm(cursor, connection, args):
         connection.commit()
 
         return redirect(f"/listatm", 301)
+
+
+@app.route("/clearmessages", endpoint="clearmessages", methods=["GET", "POST"])
+@connect_db
+@authorization
+def clearmessages(cursor, connection, args):
+    query = "DELETE FROM messages;"
+    cursor.execute(query)
+    connection.commit()
+    return redirect(f"/list-messages", 301)
+
+
+@app.route("/list-messages", endpoint="listmessages", methods=["GET", "POST"])
+@connect_db
+@authorization
+def listmessages(cursor, connection, args):
+    args["title"] = "Список сообщений"
+
+    query = (
+        f"SELECT * FROM messages ;"
+    )
+    cursor.execute(query)
+    messages = cursor.fetchall()
+    args["count"] = len(messages)
+    args["messages"] = messages[:1000]
+
+    if request.method == "GET":
+        return render_template("listmessages.html", args=args)
+    elif request.method == "POST":
+        return render_template("listmessages.html", args=args)
+
+
+@app.route("/load-csv", endpoint="loadcsv", methods=["GET", "POST"])
+@connect_db
+@authorization
+def loadcsv(cursor, connection, args):
+    args = dict()
+    args["title"] = "Загрузить CSV"
+    if request.method == "GET":
+        return render_template("loadcsv.html", args=args)
+    elif request.method == "POST":
+        if 'file' not in request.files:
+            args["error"] = "No file part"
+            return render_template("error.html", args=args)
+        file = request.files['file']
+        if file.filename == '':
+            args["error"] = "No selected file"
+            return render_template("error.html", args=args)
+        if file and file.filename.endswith('.csv'):
+            file_data = file.read().decode('utf-8')
+            csv_reader = csv.reader(file_data.splitlines())
+            rows = list(csv_reader)
+            # Печать массива строк в консоль (можно обработать по-другому)
+            # for row in rows:
+            #     print(row)
+            lines = []
+            for i, row in enumerate(rows):
+                if i == 0:
+                    continue
+                eventype = row[1]
+                timestamp = row[2]
+                device_id = row[3]
+                user_id = row[4]
+                details = row[5]
+                if len(row) > 6:
+                    value = row[6]
+                else:
+                    value=" "
+                lines.append(f'("{eventype}", "{timestamp}", "{device_id}", "{user_id}", "{details}", "{value}")')
+            query = f'INSERT INTO messages (eventype, timestamp, device_id, user_id, details, value) VALUES {", ".join(lines)};'
+            cursor.execute(query)
+            connection.commit()
+            return redirect(f"/list-messages", 301)
+        else:
+            args["error"] = "Invalid file type. Only CSV files are allowed."
+            return render_template("error.html", args=args)
+
 
 
 @app.route("/exit")
